@@ -2,6 +2,11 @@
 
 A full-stack web application that allows users to browse products, filter by category, search by name, and submit enquiries. Built with React (Frontend) and Node.js/Express + SQLite (Backend).
 
+## 🔗 Live Demo (Deployed)
+- **Frontend (UI):** [https://product-showcase-g.netlify.app/]
+- **Backend (API):** [https://product-showcase-api.onrender.com]
+  *(Note: The backend runs on a free instance and may take 30-60 seconds to wake up on the first request.)*
+
 ## 🚀 Features
 
 - **Product Listing:** Pagination, Search, and Category Filtering.
