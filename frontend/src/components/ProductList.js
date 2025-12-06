@@ -9,10 +9,6 @@ const ProductList = () => {
     const [page, setPage] = useState(1);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    useEffect(() => {
-        loadProducts();
-    }, [page, category]); 
-
     const loadProducts = async () => {
         try {
             const res = await fetchProducts(page, search, category);
@@ -21,6 +17,11 @@ const ProductList = () => {
             console.error("Error loading products", err);
         }
     };
+
+    useEffect(() => {
+        loadProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page, category]); 
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -48,13 +49,21 @@ const ProductList = () => {
                     <option value="Electronics">Electronics</option>
                     <option value="Furniture">Furniture</option>
                     <option value="Footwear">Footwear</option>
+                    <option value="Kitchen">Kitchen</option>
                 </select>
             </div>
 
             <div className="product-grid">
                 {products.length > 0 ? products.map(p => (
                     <div key={p.id} className="product-card">
-                        <img src={p.image_url} alt={p.name} />
+                        <img 
+                            src={p.image_url} 
+                            alt={p.name} 
+                            onError={(e) => { 
+                                e.target.onerror = null; 
+                                e.target.src = "https://placehold.co/600x400?text=Image+Not+Available"; 
+                            }}
+                        />
                         <h3>{p.name}</h3>
                         <p className="price">${p.price}</p>
                         <p>{p.short_desc}</p>
